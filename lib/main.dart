@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:jagrajsingh_portfolio/pages/homepage.dart';
 
 void main() {
@@ -10,10 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Jagraj Singh | Not a Regular Engineer',
       debugShowCheckedModeBanner: false,
-      home: Homepage(),
+      theme: ThemeData(textTheme: GoogleFonts.latoTextTheme()),
+      home: const Homepage(),
     );
   }
 }

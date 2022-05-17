@@ -87,6 +87,7 @@ class _JourneySectionState extends State<JourneySection>
   }
 
   void forwardAnimation() {
+    if (!mounted) return;
     _titleController.forward();
     Timer(const Duration(milliseconds: 500), () {
       _pointOneController.forward();
@@ -103,6 +104,7 @@ class _JourneySectionState extends State<JourneySection>
   }
 
   void reverseAnimation() {
+    if (!mounted) return;
     _titleController.reverse();
     Timer(const Duration(milliseconds: 500), () {
       _pointOneController.reverse();
@@ -117,6 +119,11 @@ class _JourneySectionState extends State<JourneySection>
       });
     });
   }
+
+  bool point1Hover = false,
+      point2Hover = false,
+      point3Hover = false,
+      point4Hover = false;
 
   @override
   Widget build(BuildContext context) {
@@ -157,19 +164,19 @@ class _JourneySectionState extends State<JourneySection>
                             _titleTranslation.value, 0, 0),
                         duration: _titleController.duration!,
                         child: Text.rich(
-                          TextSpan(text: "Journey", children: [
+                          const TextSpan(text: "Journey", children: [
                             TextSpan(
                               text: "\nover destination",
-                              style: GoogleFonts.lato(
-                                  fontWeight: FontWeight.bold,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.normal,
                                   color: MyTheme.text,
-                                  fontSize: 10),
+                                  fontSize: 12),
                             )
                           ]),
                           textAlign: TextAlign.center,
                           style: GoogleFonts.lato(
                               fontWeight: FontWeight.bold,
-                              color: MyTheme.text,
+                              color: MyTheme.brownTrunk,
                               fontSize: 50),
                         ),
                       ),
@@ -183,39 +190,62 @@ class _JourneySectionState extends State<JourneySection>
                         opacity: _pointOneController.value,
                         child: TimelineTile(
                           alignment: TimelineAlign.start,
+                          beforeLineStyle: const LineStyle(
+                            color: MyTheme.brownTrunk,
+                          ),
                           indicatorStyle: IndicatorStyle(
-                              color: MyTheme.accent,
-                              iconStyle:
-                                  IconStyle(iconData: Icons.star_border_sharp)),
+                              color: MyTheme.greenBush,
+                              iconStyle: IconStyle(
+                                  iconData: Icons.star_border_sharp,
+                                  color: MyTheme.brownTrunk)),
                           isFirst: true,
-                          endChild: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: AnimatedContainer(
-                              duration: _pointOneController.duration!,
-                              transform: Matrix4.translationValues(
-                                  _pointOneTranslation.value, 0, 0),
-                              decoration: BoxDecoration(
-                                color: MyTheme.accent,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.all(10),
-                              child: const Text.rich(
-                                TextSpan(
-                                    text: "Born in April, 1999",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: MyTheme.text,
-                                        fontSize: 16),
-                                    children: [
-                                      TextSpan(
-                                          text:
-                                              "\nPunjab, India\nBrought up in New Delhi, India.",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.normal,
-                                              color: MyTheme.text,
-                                              fontSize: 16)),
-                                    ]),
+                          endChild: MouseRegion(
+                            onEnter: (p) {
+                              if (mounted) {
+                                setState(() {
+                                  point1Hover = true;
+                                });
+                              }
+                            },
+                            onExit: (p) {
+                              if (mounted) {
+                                setState(() {
+                                  point1Hover = false;
+                                });
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: AnimatedContainer(
+                                duration: _pointOneController.duration!,
+                                transform: Matrix4.translationValues(
+                                    _pointOneTranslation.value, 0, 0),
+                                decoration: BoxDecoration(
+                                  color: MyTheme.greenBush,
+                                  boxShadow: [
+                                    if (point1Hover) MyTheme.journeyBoxShadow,
+                                  ],
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                alignment: Alignment.centerLeft,
+                                padding: const EdgeInsets.all(10),
+                                child: const Text.rich(
+                                  TextSpan(
+                                      text: "Born in April, 1999",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: MyTheme.brownTrunk,
+                                          fontSize: 16),
+                                      children: [
+                                        TextSpan(
+                                            text:
+                                                "\n Punjab, India\n Brought up in New Delhi, India.",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                color: MyTheme.text,
+                                                fontSize: 12)),
+                                      ]),
+                                ),
                               ),
                             ),
                           ),
@@ -226,38 +256,61 @@ class _JourneySectionState extends State<JourneySection>
                         opacity: _pointTwoController.value,
                         child: TimelineTile(
                           alignment: TimelineAlign.start,
+                          beforeLineStyle: const LineStyle(
+                            color: MyTheme.brownTrunk,
+                          ),
                           indicatorStyle: IndicatorStyle(
-                              color: MyTheme.accent,
-                              iconStyle:
-                                  IconStyle(iconData: Icons.star_border_sharp)),
-                          endChild: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: AnimatedContainer(
-                              duration: _pointTwoController.duration!,
-                              transform: Matrix4.translationValues(
-                                  _pointTwoTranslation.value, 0, 0),
-                              decoration: BoxDecoration(
-                                color: MyTheme.accent,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.all(10),
-                              child: const Text.rich(
-                                TextSpan(
-                                    text: "High School",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: MyTheme.text,
-                                        fontSize: 16),
-                                    children: [
-                                      TextSpan(
-                                          text:
-                                              "\nSri Guru Nanak Public School, New Delhi, India\n Year of passing - 2017",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.normal,
-                                              color: MyTheme.text,
-                                              fontSize: 16)),
-                                    ]),
+                              color: MyTheme.greenBush,
+                              iconStyle: IconStyle(
+                                  iconData: Icons.star_border_sharp,
+                                  color: MyTheme.brownTrunk)),
+                          endChild: MouseRegion(
+                            onEnter: (p) {
+                              if (mounted) {
+                                setState(() {
+                                  point2Hover = true;
+                                });
+                              }
+                            },
+                            onExit: (p) {
+                              if (mounted) {
+                                setState(() {
+                                  point2Hover = false;
+                                });
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: AnimatedContainer(
+                                duration: _pointTwoController.duration!,
+                                transform: Matrix4.translationValues(
+                                    _pointTwoTranslation.value, 0, 0),
+                                decoration: BoxDecoration(
+                                  color: MyTheme.greenBush,
+                                  boxShadow: [
+                                    if (point2Hover) MyTheme.journeyBoxShadow,
+                                  ],
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                alignment: Alignment.centerLeft,
+                                padding: const EdgeInsets.all(10),
+                                child: const Text.rich(
+                                  TextSpan(
+                                      text: "High School",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: MyTheme.brownTrunk,
+                                          fontSize: 16),
+                                      children: [
+                                        TextSpan(
+                                            text:
+                                                "\n Sri Guru Nanak Public School, New Delhi, India\n Year of passing - 2017",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                color: MyTheme.text,
+                                                fontSize: 12)),
+                                      ]),
+                                ),
                               ),
                             ),
                           ),
@@ -268,38 +321,199 @@ class _JourneySectionState extends State<JourneySection>
                         opacity: _pointThreeController.value,
                         child: TimelineTile(
                           alignment: TimelineAlign.start,
+                          beforeLineStyle: const LineStyle(
+                            color: MyTheme.brownTrunk,
+                          ),
                           indicatorStyle: IndicatorStyle(
-                              color: MyTheme.accent,
-                              iconStyle:
-                                  IconStyle(iconData: Icons.star_border_sharp)),
-                          endChild: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: AnimatedContainer(
-                              duration: _pointThreeController.duration!,
-                              transform: Matrix4.translationValues(
-                                  _pointThreeTranslation.value, 0, 0),
-                              decoration: BoxDecoration(
-                                color: MyTheme.accent,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.all(10),
-                              child: const Text.rich(
-                                TextSpan(
-                                    text: "Graduation",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: MyTheme.text,
-                                        fontSize: 16),
-                                    children: [
+                              color: MyTheme.greenBush,
+                              iconStyle: IconStyle(
+                                  iconData: Icons.star_border_sharp,
+                                  color: MyTheme.brownTrunk)),
+                          endChild: MouseRegion(
+                            onEnter: (p) {
+                              if (mounted) {
+                                setState(() {
+                                  point3Hover = true;
+                                });
+                              }
+                            },
+                            onExit: (p) {
+                              if (mounted) {
+                                setState(() {
+                                  point3Hover = false;
+                                });
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: AnimatedContainer(
+                                duration: _pointThreeController.duration!,
+                                transform: Matrix4.translationValues(
+                                    _pointThreeTranslation.value, 0, 0),
+                                decoration: BoxDecoration(
+                                  color: MyTheme.greenBush,
+                                  boxShadow: [
+                                    if (point3Hover) MyTheme.journeyBoxShadow,
+                                  ],
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                alignment: Alignment.centerLeft,
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Text.rich(
                                       TextSpan(
-                                          text:
-                                              "\nGuru Gobind Singh Indraprastha University, New Delhi, India\nYear of passing - 2021",
+                                          text: "Computer Science Engineering",
                                           style: TextStyle(
-                                              fontWeight: FontWeight.normal,
-                                              color: MyTheme.text,
-                                              fontSize: 16)),
-                                    ]),
+                                              fontWeight: FontWeight.bold,
+                                              color: MyTheme.brownTrunk,
+                                              fontSize: 16),
+                                          children: [
+                                            TextSpan(
+                                                text:
+                                                    "\n Guru Gobind Singh Indraprastha University, New Delhi, India\n 2017 - 2021",
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    color: MyTheme.text,
+                                                    fontSize: 12)),
+                                          ]),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0),
+                                      child: SizedBox(
+                                        height: 70,
+                                        child: TimelineTile(
+                                          alignment: TimelineAlign.start,
+                                          isFirst: true,
+                                          afterLineStyle: LineStyle(
+                                              color: MyTheme.greenDark),
+                                          indicatorStyle: IndicatorStyle(
+                                              color: MyTheme.brownTrunk,
+                                              iconStyle: IconStyle(
+                                                  iconData:
+                                                      Icons.star_border_sharp,
+                                                  color: MyTheme.white)),
+                                          endChild: const Padding(
+                                            padding: EdgeInsets.all(10.0),
+                                            child: Text.rich(
+                                              TextSpan(
+                                                  text:
+                                                      "Flutter Developer, Hyper",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: MyTheme.brownTrunk,
+                                                      fontSize: 16),
+                                                  children: [
+                                                    TextSpan(
+                                                        text:
+                                                            "\n August 2018 - May 2020",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            color: MyTheme.text,
+                                                            fontSize: 12)),
+                                                  ]),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0),
+                                      child: SizedBox(
+                                        height: 70,
+                                        child: TimelineTile(
+                                          alignment: TimelineAlign.start,
+                                          afterLineStyle: LineStyle(
+                                              color: MyTheme.greenDark),
+                                          beforeLineStyle: LineStyle(
+                                              color: MyTheme.greenDark),
+                                          indicatorStyle: IndicatorStyle(
+                                              color: MyTheme.brownTrunk,
+                                              iconStyle: IconStyle(
+                                                  iconData:
+                                                      Icons.star_border_sharp,
+                                                  color: MyTheme.white)),
+                                          endChild: const Padding(
+                                            padding: EdgeInsets.all(10.0),
+                                            child: Text.rich(
+                                              TextSpan(
+                                                  text:
+                                                      "Flutter Developer, Specso Technologies",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: MyTheme.brownTrunk,
+                                                      fontSize: 16),
+                                                  children: [
+                                                    TextSpan(
+                                                        text:
+                                                            "\n July 2020 - Aug 2021",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            color: MyTheme.text,
+                                                            fontSize: 12)),
+                                                  ]),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0),
+                                      child: SizedBox(
+                                        height: 70,
+                                        child: TimelineTile(
+                                          alignment: TimelineAlign.start,
+                                          isLast: true,
+                                          beforeLineStyle: LineStyle(
+                                              color: MyTheme.greenDark),
+                                          indicatorStyle: IndicatorStyle(
+                                              color: MyTheme.brownTrunk,
+                                              iconStyle: IconStyle(
+                                                  iconData:
+                                                      Icons.star_border_sharp,
+                                                  color: MyTheme.white)),
+                                          endChild: const Padding(
+                                            padding: EdgeInsets.all(10.0),
+                                            child: Text.rich(
+                                              TextSpan(
+                                                  text:
+                                                      "Flutter Developer, WeExpan Pvt. Ltd.",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: MyTheme.brownTrunk,
+                                                      fontSize: 16),
+                                                  children: [
+                                                    TextSpan(
+                                                        text:
+                                                            "\n November 2020 - January 2021",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            color: MyTheme.text,
+                                                            fontSize: 12)),
+                                                  ]),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -310,39 +524,62 @@ class _JourneySectionState extends State<JourneySection>
                         opacity: _pointFourController.value,
                         child: TimelineTile(
                           alignment: TimelineAlign.start,
+                          beforeLineStyle: const LineStyle(
+                            color: MyTheme.brownTrunk,
+                          ),
                           indicatorStyle: IndicatorStyle(
-                              color: MyTheme.accent,
-                              iconStyle:
-                                  IconStyle(iconData: Icons.star_border_sharp)),
+                              color: MyTheme.greenBush,
+                              iconStyle: IconStyle(
+                                  iconData: Icons.star_border_sharp,
+                                  color: MyTheme.brownTrunk)),
                           isLast: true,
-                          endChild: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: AnimatedContainer(
-                              duration: _pointFourController.duration!,
-                              transform: Matrix4.translationValues(
-                                  _pointFourTranslation.value, 0, 0),
-                              decoration: BoxDecoration(
-                                color: MyTheme.accent,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.all(10),
-                              child: const Text.rich(
-                                TextSpan(
-                                    text: "Associate Software Engineer",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: MyTheme.text,
-                                        fontSize: 16),
-                                    children: [
-                                      TextSpan(
-                                          text:
-                                              "\nBetaflux Pvt. Ltd., Bangalore, India\n2021 - Present",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.normal,
-                                              color: MyTheme.text,
-                                              fontSize: 16)),
-                                    ]),
+                          endChild: MouseRegion(
+                            onEnter: (p) {
+                              if (mounted) {
+                                setState(() {
+                                  point4Hover = true;
+                                });
+                              }
+                            },
+                            onExit: (p) {
+                              if (mounted) {
+                                setState(() {
+                                  point4Hover = false;
+                                });
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: AnimatedContainer(
+                                duration: _pointFourController.duration!,
+                                transform: Matrix4.translationValues(
+                                    _pointFourTranslation.value, 0, 0),
+                                decoration: BoxDecoration(
+                                  color: MyTheme.greenBush,
+                                  boxShadow: [
+                                    if (point4Hover) MyTheme.journeyBoxShadow,
+                                  ],
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                alignment: Alignment.centerLeft,
+                                padding: const EdgeInsets.all(10),
+                                child: const Text.rich(
+                                  TextSpan(
+                                      text: "Associate Software Engineer",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: MyTheme.brownTrunk,
+                                          fontSize: 16),
+                                      children: [
+                                        TextSpan(
+                                            text:
+                                                "\n Betaflux Pvt. Ltd., Bangalore, India\n 2021 - Present",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                color: MyTheme.text,
+                                                fontSize: 12)),
+                                      ]),
+                                ),
                               ),
                             ),
                           ),

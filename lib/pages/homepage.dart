@@ -6,6 +6,7 @@ import 'package:jagrajsingh_portfolio/utils/my_theme.dart';
 import '../components/about_section.dart';
 import '../components/home_section.dart';
 import '../components/journey_section.dart';
+import '../components/project_section.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -30,8 +31,9 @@ class _IndexState extends State<Homepage> {
                     SizedBox(
                       height: 100,
                     ),
-                    HomeSection(),
+                    // ProjectSection(),
                     AboutSection(),
+                    HomeSection(),
                     JourneySection(),
                     SizedBox(
                       height: 100,

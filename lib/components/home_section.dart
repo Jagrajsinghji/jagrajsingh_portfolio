@@ -107,10 +107,10 @@ class _HomeSectionState extends State<HomeSection>
                   transform: Matrix4.translationValues(
                       _greetingTranslation.value, 0, 0),
                   duration: _greetingController.duration!,
-                  child: Text(
+                  child: const Text(
                     "HEY THERE 👋 I'M",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.lato(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: MyTheme.text,
                     ),
@@ -124,10 +124,10 @@ class _HomeSectionState extends State<HomeSection>
                   transform:
                       Matrix4.translationValues(_titleTranslation.value, 0, 0),
                   duration: _titleController.duration!,
-                  child: Text(
+                  child: const Text(
                     "Jagraj Singh",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.lato(
+                    style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: MyTheme.text,
                         fontSize: 50),
@@ -144,10 +144,10 @@ class _HomeSectionState extends State<HomeSection>
                   transform: Matrix4.translationValues(
                       _subTitleTranslation.value, 0, 0),
                   duration: _subTitleController.duration!,
-                  child: Text(
+                  child: const Text(
                     "Not a Regular Engineer",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.lato(
+                    style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: MyTheme.text,
                         fontSize: 20),
