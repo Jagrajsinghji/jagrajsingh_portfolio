@@ -36,6 +36,7 @@ dependencies:
   lottie:
   visibility_detector:
   timeline_tile:
+  get_it:
 
 dev_dependencies:
   flutter_test:
@@ -59,10 +60,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/sikh_icon.png
-    - assets/laptop_wave.png
-    - assets/what_stand_me_out.json
-    - assets/urOs.png
+    - assets/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

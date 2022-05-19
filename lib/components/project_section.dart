@@ -29,7 +29,7 @@ class _ProjectSectionState extends State<ProjectSection>
   }
 
   void forwardAnimation() {
-    if(!mounted)return;
+    if (!mounted) return;
     _titleController.forward();
     // Timer(const Duration(milliseconds: 500), () {
     //   _subTitleController.forward();
@@ -37,7 +37,7 @@ class _ProjectSectionState extends State<ProjectSection>
   }
 
   void reverseAnimation() {
-    if(!mounted)return;
+    if (!mounted) return;
     _titleController.reverse();
     // Timer(const Duration(milliseconds: 500), () {
     //   _subTitleController.reverse();

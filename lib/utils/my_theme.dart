@@ -14,6 +14,9 @@ class MyTheme {
       blurRadius: 3,
       spreadRadius: 2,
       offset: Offset(0, 2));
-  static const Color orange = Color(0xffF7A413);
-  static const Color orangeDark = Color(0xffBC5B04);
+  static const Color maroon = Color(0xffa20906);
+  static const Color pinkDark = Color(0xffe87b8b);
+
+  static const Color nameText = Color(0xff112B3A);
+  static const Color whatStandButton = Color(0xffFFE59D);
 }

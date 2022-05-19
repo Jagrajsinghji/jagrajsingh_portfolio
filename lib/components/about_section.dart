@@ -26,9 +26,9 @@ class _AboutSectionState extends State<AboutSection>
   void initState() {
     super.initState();
     _titleController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
+        vsync: this, duration: const Duration(milliseconds: 300));
     _subTitleController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
+        vsync: this, duration: const Duration(milliseconds: 300));
 
     _titleTranslation = Tween(begin: -100.0, end: 0.0).animate(
         CurvedAnimation(parent: _titleController, curve: Curves.bounceInOut));
@@ -55,16 +55,8 @@ class _AboutSectionState extends State<AboutSection>
   void forwardAnimation() {
     if (!mounted) return;
     _titleController.forward();
-    Timer(const Duration(milliseconds: 500), () {
+    Timer(const Duration(milliseconds: 300), () {
       _subTitleController.forward();
-    });
-  }
-
-  void reverseAnimation() {
-    if (!mounted) return;
-    _titleController.reverse();
-    Timer(const Duration(milliseconds: 500), () {
-      _subTitleController.reverse();
     });
   }
 
@@ -74,10 +66,8 @@ class _AboutSectionState extends State<AboutSection>
     return VisibilityDetector(
       key: const Key("About Section"),
       onVisibilityChanged: (s) {
-        if (s.visibleFraction > .4) {
+        if (s.visibleFraction > .3) {
           forwardAnimation();
-        } else {
-          reverseAnimation();
         }
       },
       child: Wrap(
@@ -105,7 +95,7 @@ class _AboutSectionState extends State<AboutSection>
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: MyTheme.orange,
+                              color: MyTheme.maroon,
                               fontSize: 50),
                         ),
                       ),
@@ -126,77 +116,79 @@ class _AboutSectionState extends State<AboutSection>
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "I am Jagraj Singh, a scholar with $myAge years of experience in life.",
+                              "I'm Jagraj Singh, a scholar having $myAge years of life experience.",
                               textAlign: TextAlign.start,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   height: 1.5,
                                   fontStyle: FontStyle.italic,
-                                  color: MyTheme.orangeDark,
+                                  color: MyTheme.pinkDark,
                                   fontSize: 18),
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(vertical: 5.0),
                               child: Text(
-                                "For me, writing code is just like writing poems, I make impact with both of them.",
+                                "I create algorithms in the same way that I write poetry; both have an influence on me.",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
                                     fontStyle: FontStyle.italic,
-                                    color: MyTheme.orangeDark,
+                                    color: MyTheme.pinkDark,
                                     fontSize: 18),
                               ),
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(vertical: 5.0),
                               child: Text(
-                                "I design and develop softwares with bigger picture in mind and that's the crux I believe.",
+                                "I design and create software with the broader picture in mind, and I feel that's the crux.",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
                                     fontStyle: FontStyle.italic,
-                                    color: MyTheme.orangeDark,
+                                    color: MyTheme.pinkDark,
                                     fontSize: 18),
                               ),
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(vertical: 5.0),
                               child: Text(
-                                "Although I love the realm of softwares, a portion of my heart belongs to the world of IoT (Internet of Things) and 3D printing too.",
+                                "Although I am passionate about programming, I also have a soft spot for IoT (Internet of Things) and 3D printing.",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
                                     fontStyle: FontStyle.italic,
-                                    color: MyTheme.orangeDark,
+                                    color: MyTheme.pinkDark,
                                     fontSize: 18),
                               ),
                             ),
                             const Padding(
                               padding: EdgeInsets.only(top: 10.0),
                               child: Text(
-                                "Now, let me walk you through the journey of my life.",
+                                "Let me now take you on a tour through my life.",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
                                     fontStyle: FontStyle.italic,
-                                    color: MyTheme.orangeDark,
+                                    color: MyTheme.pinkDark,
                                     fontSize: 18),
                               ),
                             ),
                             InkWell(
-                              onTap: () {print("sds");},
+                              onTap: () {
+                                // print("sds");
+                              },
                               child: const Text(
-                                "(Want a thorough walk, let's connect ?)",
+                                "(Let's connect for a comprehensive walk)",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
                                     fontStyle: FontStyle.italic,
-                                    color: MyTheme.orangeDark,
+                                    color: MyTheme.pinkDark,
                                     fontSize: 18),
                               ),
                             ),
@@ -217,3 +209,6 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 }
+/*
+ Writing algorithm is very similar to writing poetry for me in that both have an impact. I design and create software with the broader picture in mind, and I feel that's the key. Although I am passionate about programming, I also have a soft spot for IoT (Internet of Things) and 3D printing. Let me now take you on a tour through my life. (Let's connect for a comprehensive walk)
+ */
