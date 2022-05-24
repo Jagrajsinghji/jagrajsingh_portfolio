@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/my_theme.dart';
+import '../../utils/my_urls.dart';
 
 class WeExpanContainer extends StatefulWidget {
   const WeExpanContainer({Key? key}) : super(key: key);
@@ -49,8 +51,10 @@ class _WeExpanContainerState extends State<WeExpanContainer>
         },
         child: Container(
             width: 300,
-            height: 350,
-            decoration: BoxDecoration(
+            height: 300,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(color: MyTheme.greenBushWithOpacity,blurRadius: 3,spreadRadius: 2,offset: Offset(2,2))
+            ],
                 color: MyTheme.white, borderRadius: BorderRadius.circular(10)),
             padding: const EdgeInsets.all(14),
             child: Stack(
@@ -74,7 +78,7 @@ class _WeExpanContainerState extends State<WeExpanContainer>
                             Text(
                               "WeExpan",
                               style: TextStyle(
-                                  color: Color(0xff1e366e),
+                                  color: MyTheme.weExpanBlue,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16),
                             ),
@@ -85,7 +89,7 @@ class _WeExpanContainerState extends State<WeExpanContainer>
                                 style: TextStyle(
                                     color: MyTheme.text,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                    ),
                               ),
                             ),
                             Padding(
@@ -95,7 +99,7 @@ class _WeExpanContainerState extends State<WeExpanContainer>
                                 style: TextStyle(
                                     color: MyTheme.text,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                    ),
                               ),
                             ),
                             Padding(
@@ -105,7 +109,7 @@ class _WeExpanContainerState extends State<WeExpanContainer>
                                 style: TextStyle(
                                     color: MyTheme.text,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                    ),
                               ),
                             ),
                           ]),
@@ -121,6 +125,13 @@ class _WeExpanContainerState extends State<WeExpanContainer>
                     width: 120 - (60 * _controller.value),
                   ),
                 ),
+                Align(alignment: Alignment.topRight,
+                  child: IconButton(icon: const Icon(Icons.open_in_new),onPressed: ()async{
+                    if( await canLaunchUrl(MyURLs.hyperWebsite)){
+                      launchUrl(MyURLs.weExpanLinkedIn);
+                    }
+                  },),
+                )
               ],
             )),
       ),

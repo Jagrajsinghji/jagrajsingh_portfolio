@@ -11,8 +11,7 @@ class HomeSection extends StatefulWidget {
   State<HomeSection> createState() => _HomeSectionState();
 }
 
-class _HomeSectionState extends State<HomeSection>
-    with TickerProviderStateMixin {
+class _HomeSectionState extends State<HomeSection> with TickerProviderStateMixin {
   late AnimationController _greetingController;
   late AnimationController _titleController;
   late AnimationController _subTitleController;
@@ -80,18 +79,31 @@ class _HomeSectionState extends State<HomeSection>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SizedBox(
-      height: 560,
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          gradient: LinearGradient(colors: [
+            MyTheme.greenBushWithOpacity.withOpacity(.2),
+            MyTheme.whatStandButton.withOpacity(.5),
+            MyTheme.smoke
+          ], stops: const [
+            .2,
+            .4,
+            .9
+          ])),
       child: Wrap(
         alignment: WrapAlignment.center,
         crossAxisAlignment: WrapCrossAlignment.center,
         runAlignment: WrapAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Image.asset(
-              "assets/laptop_wave.png",
-              width: size.width * .4,
+            padding: const EdgeInsets.all(40.0),
+            child: ClipRRect(borderRadius: BorderRadius.circular(100),
+              child: Image.asset(
+                "assets/my_pic.jpeg",
+                width: 200,
+                height: 200,fit: BoxFit.cover,
+              ),
             ),
           ),
           Padding(
@@ -157,34 +169,34 @@ class _HomeSectionState extends State<HomeSection>
                 const SizedBox(
                   height: 40,
                 ),
-                AnimatedOpacity(
-                  duration: _buttonController.duration!,
-                  opacity: _buttonController.value,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("What stands me out?",
-                        style: TextStyle(fontSize: 16)),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith((states) {
-                          if (states.contains(MaterialState.hovered)) {
-                            return MyTheme.nameText;
-                          }
-                          return MyTheme.whatStandButton;
-                        }),
-                        foregroundColor:
-                            MaterialStateProperty.resolveWith((states) {
-                          if (states.contains(MaterialState.hovered)) {
-                            return MyTheme.whatStandButton;
-                          }
-                          return MyTheme.nameText;
-                        }),
-                        padding:
-                            MaterialStateProperty.all(const EdgeInsets.all(18)),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)))),
-                  ),
-                )
+                // AnimatedOpacity(
+                //   duration: _buttonController.duration!,
+                //   opacity: _buttonController.value,
+                //   child: ElevatedButton(
+                //     onPressed: () {},
+                //     child: const Text("What stands me out?",
+                //         style: TextStyle(fontSize: 16)),
+                //     style: ButtonStyle(
+                //         backgroundColor:
+                //             MaterialStateProperty.resolveWith((states) {
+                //           if (states.contains(MaterialState.hovered)) {
+                //             return MyTheme.nameText;
+                //           }
+                //           return MyTheme.whatStandButton;
+                //         }),
+                //         foregroundColor:
+                //             MaterialStateProperty.resolveWith((states) {
+                //           if (states.contains(MaterialState.hovered)) {
+                //             return MyTheme.whatStandButton;
+                //           }
+                //           return MyTheme.nameText;
+                //         }),
+                //         padding:
+                //             MaterialStateProperty.all(const EdgeInsets.all(18)),
+                //         shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.circular(10)))),
+                //   ),
+                // )
               ],
             ),
           ),

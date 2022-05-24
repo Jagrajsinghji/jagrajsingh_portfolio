@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../utils/my_theme.dart';
+import '../utils/painters/dots_painter.dart';
 
 class AboutSection extends StatefulWidget {
   const AboutSection({Key? key}) : super(key: key);
@@ -63,6 +65,7 @@ class _AboutSectionState extends State<AboutSection>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return VisibilityDetector(
       key: const Key("About Section"),
       onVisibilityChanged: (s) {
@@ -70,145 +73,151 @@ class _AboutSectionState extends State<AboutSection>
           forwardAnimation();
         }
       },
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        runAlignment: WrapAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20),
-            child: SizedBox(
-              width: size.width * .4,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AnimatedOpacity(
-                      duration: _titleController.duration!,
-                      opacity: _titleController.value,
-                      child: AnimatedContainer(
-                        transform: Matrix4.translationValues(
-                            _titleTranslation.value, 0, 0),
-                        duration: _titleController.duration!,
-                        child: const Text(
-                          "About",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: MyTheme.maroon,
-                              fontSize: 50),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    AnimatedOpacity(
-                      duration: _subTitleController.duration!,
-                      opacity: _subTitleController.value,
-                      child: AnimatedContainer(
-                        transform: Matrix4.translationValues(
-                            _subTitleTranslation.value, 0, 0),
-                        duration: _subTitleController.duration!,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+
+          MyTheme.whatStandButton.withOpacity(.2),
+              Colors.grey.shade100,
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        child: ClipRRect(
+          borderRadius: BorderRadius.zero,
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            runAlignment: WrapAlignment.center,
+            direction: Axis.horizontal,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: SizedBox(
+                  width: size.width * .4,
+                  child: CustomPaint(
+                    painter: DotsPainter(),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "I'm Jagraj Singh, a scholar having $myAge years of life experience.",
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.5,
-                                  fontStyle: FontStyle.italic,
-                                  color: MyTheme.pinkDark,
-                                  fontSize: 18),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 5.0),
-                              child: Text(
-                                "I create algorithms in the same way that I write poetry; both have an influence on me.",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    height: 1.5,
-                                    fontStyle: FontStyle.italic,
-                                    color: MyTheme.pinkDark,
-                                    fontSize: 18),
+                            AnimatedOpacity(
+                              duration: _titleController.duration!,
+                              opacity: _titleController.value,
+                              child: AnimatedContainer(
+                                transform: Matrix4.translationValues(
+                                    _titleTranslation.value, 0, 0),
+                                duration: _titleController.duration!,
+                                child: const Text(
+                                  "About",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: MyTheme.maroon,
+                                      fontSize: 50),
+                                ),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 5.0),
-                              child: Text(
-                                "I design and create software with the broader picture in mind, and I feel that's the crux.",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    height: 1.5,
-                                    fontStyle: FontStyle.italic,
-                                    color: MyTheme.pinkDark,
-                                    fontSize: 18),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            AnimatedOpacity(
+                              duration: _subTitleController.duration!,
+                              opacity: _subTitleController.value,
+                              child: AnimatedContainer(
+                                transform: Matrix4.translationValues(
+                                    _subTitleTranslation.value, 0, 0),
+                                duration: _subTitleController.duration!,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "I'm Jagraj Singh, a human having $myAge years of experience in life.",
+                                      textAlign: TextAlign.start,
+                                      style: const TextStyle(
+                                          height: 1.5,
+                                          color: MyTheme.pinkDark,
+                                          fontSize: 18),
+                                    ),
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 5.0),
+                                      child: Text(
+                                        "I create an impact with my algorithms and poetry.",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            height: 1.5,
+                                            color: MyTheme.pinkDark,
+                                            fontSize: 18),
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 5.0),
+                                      child: Text(
+                                        "I design and create software with the broader picture in mind because that's the crux.",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            height: 1.5,
+                                            color: MyTheme.pinkDark,
+                                            fontSize: 18),
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 5.0),
+                                      child: Text(
+                                        "Although I am passionate about programming, I also have a soft spot for IoT (Internet of Things) and 3D printing.",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            height: 1.5,
+                                            color: MyTheme.pinkDark,
+                                            fontSize: 18),
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.only(top: 10.0),
+                                      child: Text(
+                                        "Let me now take you on a tour through my life.",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            height: 1.5,
+                                            color: MyTheme.pinkDark,
+                                            fontSize: 18),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        // print("sds");
+                                      },
+                                      child: const Text(
+                                        "(Let's connect for a comprehensive walk)",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            height: 1.5,
+                                            color: MyTheme.pinkDark,
+                                            fontSize: 18),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 5.0),
-                              child: Text(
-                                "Although I am passionate about programming, I also have a soft spot for IoT (Internet of Things) and 3D printing.",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    height: 1.5,
-                                    fontStyle: FontStyle.italic,
-                                    color: MyTheme.pinkDark,
-                                    fontSize: 18),
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                "Let me now take you on a tour through my life.",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    height: 1.5,
-                                    fontStyle: FontStyle.italic,
-                                    color: MyTheme.pinkDark,
-                                    fontSize: 18),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                // print("sds");
-                              },
-                              child: const Text(
-                                "(Let's connect for a comprehensive walk)",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    height: 1.5,
-                                    fontStyle: FontStyle.italic,
-                                    color: MyTheme.pinkDark,
-                                    fontSize: 18),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                          ]),
                     ),
-                  ]),
-            ),
+                  ),
+                ),
+              ),
+              LottieBuilder.asset(
+                "assets/what_stand_me_out.json",
+                width: size.width * .4,
+                height: size.width * .4,
+              )
+            ],
           ),
-          LottieBuilder.asset(
-            "assets/what_stand_me_out.json",
-            width: size.width * .4,
-            height: size.width * .4,
-          )
-        ],
+        ),
       ),
     );
   }
 }
-/*
- Writing algorithm is very similar to writing poetry for me in that both have an impact. I design and create software with the broader picture in mind, and I feel that's the key. Although I am passionate about programming, I also have a soft spot for IoT (Internet of Things) and 3D printing. Let me now take you on a tour through my life. (Let's connect for a comprehensive walk)
- */

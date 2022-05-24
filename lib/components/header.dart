@@ -1,66 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:jagrajsingh_portfolio/utils/my_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../utils/my_theme.dart';
 import '../utils/my_urls.dart';
 
-class Footer extends StatelessWidget {
-  const Footer({Key? key}) : super(key: key);
+class Header extends StatelessWidget {
+  const Header({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 70,
-        decoration: const BoxDecoration(
-            color: Colors.transparent,
-            border: Border(top: BorderSide(color: MyTheme.nameText))),
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+      height: 70,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+        MyTheme.greenBushWithOpacity.withOpacity(.2),
+        MyTheme.whatStandButton.withOpacity(.5),
+        MyTheme.smoke
+      ], stops: const [
+        .2,
+        .4,
+        .9
+      ])),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
+            const SizedBox(
+              height: 60,
+              width: 60,
+              child: Center(
+                child: Text("JS",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        color: MyTheme.nameText,
+                        fontSize: 30)),
+              ),
+            ),
+            const Spacer(),
             Expanded(
               child: ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
+                reverse: true,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: GestureDetector(
                       onTap: () async {
-                        if (await canLaunchUrl(MyURLs.phone)) {
-                          launchUrl(MyURLs.phone);
+                        if (await canLaunchUrl(MyURLs.linkedIn)) {
+                          launchUrl(MyURLs.linkedIn);
                         }
                       },
                       child: Tooltip(
-                        message: "+919582218674",
+                        message: "LinkedIn",
                         child: Container(
                           color: Colors.transparent,
                           child: SvgPicture.asset(
-                            "assets/svg/phone.svg",
-                            width: 30,
-                            height: 30,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (await canLaunchUrl(MyURLs.email)) {
-                          launchUrl(MyURLs.email);
-                        }
-                      },
-                      child: Tooltip(
-                        message: "jagrajsinghji99@gmail.com",
-                        child: Container(
-                          color: Colors.transparent,
-                          child: SvgPicture.asset(
-                            "assets/svg/email.svg",
-                            height: 25,
+                            "assets/svg/linkedin-svgrepo-com.svg",
                             width: 25,
+                            height: 25,
                           ),
                         ),
                       ),
@@ -70,16 +70,37 @@ class Footer extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: GestureDetector(
                       onTap: () async {
-                        if (await canLaunchUrl(MyURLs.twitter)) {
-                          launchUrl(MyURLs.twitter);
+                        if (await canLaunchUrl(MyURLs.medium)) {
+                          launchUrl(MyURLs.medium);
                         }
                       },
                       child: Tooltip(
-                        message: "Twitter",
+                        message: "Medium",
                         child: Container(
                           color: Colors.transparent,
                           child: SvgPicture.asset(
-                            "assets/svg/twitter.svg",
+                            "assets/svg/medium-icon-svgrepo-com.svg",
+                            height: 30,
+                            width: 30,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: GestureDetector(
+                      onTap: () async {
+                        if (await canLaunchUrl(MyURLs.stackOverflow)) {
+                          launchUrl(MyURLs.stackOverflow);
+                        }
+                      },
+                      child: Tooltip(
+                        message: "Stack Overflow",
+                        child: Container(
+                          color: Colors.transparent,
+                          child: SvgPicture.asset(
+                            "assets/svg/stack-overflow-svgrepo-com.svg",
                             width: 30,
                             height: 30,
                           ),
@@ -91,18 +112,18 @@ class Footer extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: GestureDetector(
                       onTap: () async {
-                        if (await canLaunchUrl(MyURLs.instagram)) {
-                          launchUrl(MyURLs.instagram);
+                        if (await canLaunchUrl(MyURLs.github)) {
+                          launchUrl(MyURLs.github);
                         }
                       },
                       child: Tooltip(
-                        message: "Instagram",
+                        message: "GitHub",
                         child: Container(
                           color: Colors.transparent,
                           child: SvgPicture.asset(
-                            "assets/svg/insta.svg",
-                            width: 30,
-                            height: 30,
+                            "assets/svg/github-svgrepo-com.svg",
+                            width: 25,
+                            height: 25,
                           ),
                         ),
                       ),
@@ -110,13 +131,10 @@ class Footer extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            const Text(
-              "Copyright © 2022 Jagraj Singh.",
-              maxLines: 2,
-              style: TextStyle(fontSize: 14, color: MyTheme.nameText),
-            ),
+            )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

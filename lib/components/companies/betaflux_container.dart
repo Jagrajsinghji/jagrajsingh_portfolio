@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/my_theme.dart';
+import '../../utils/my_urls.dart';
 
 class BetafluxContainer extends StatefulWidget {
   const BetafluxContainer({Key? key}) : super(key: key);
@@ -49,9 +51,14 @@ class _BetafluxContainerState extends State<BetafluxContainer>
         },
         child: Container(
             width: 300,
-            height: 350,
-            decoration: BoxDecoration(
-                color: MyTheme.white, borderRadius: BorderRadius.circular(10)),
+            height: 300,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                  color: MyTheme.greenBushWithOpacity,
+                  blurRadius: 3,
+                  spreadRadius: 2,
+                  offset: const Offset(2, 2))
+            ], color: MyTheme.white, borderRadius: BorderRadius.circular(10)),
             padding: const EdgeInsets.all(14),
             child: Stack(
               children: [
@@ -74,7 +81,7 @@ class _BetafluxContainerState extends State<BetafluxContainer>
                             Text(
                               "Betaflux Pvt. Ltd.",
                               style: TextStyle(
-                                  color: Color(0xff153dd9),
+                                  color: MyTheme.btflxBlue,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16),
                             ),
@@ -83,9 +90,9 @@ class _BetafluxContainerState extends State<BetafluxContainer>
                               child: Text(
                                 "I am presently employed as an Associate Software Engineer, at Betaflux.",
                                 style: TextStyle(
-                                    color: MyTheme.text,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                  color: MyTheme.text,
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                             Padding(
@@ -93,9 +100,9 @@ class _BetafluxContainerState extends State<BetafluxContainer>
                               child: Text(
                                 "I am involved with backend services in Java and mobile apps in Flutter.",
                                 style: TextStyle(
-                                    color: MyTheme.text,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                  color: MyTheme.text,
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                             Padding(
@@ -103,9 +110,9 @@ class _BetafluxContainerState extends State<BetafluxContainer>
                               child: Text(
                                 "Quoting Animesh (CEO) - \n \"You're putting out tremendously impacting products at Betaflux for clients across South East Asia, India, and Europe!\"",
                                 style: TextStyle(
-                                    color: MyTheme.text,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                  color: MyTheme.text,
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                           ]),
@@ -121,6 +128,17 @@ class _BetafluxContainerState extends State<BetafluxContainer>
                     width: 120 - (60 * _controller.value),
                   ),
                 ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: const Icon(Icons.open_in_new),
+                    onPressed: () async {
+                      if (await canLaunchUrl(MyURLs.betafluxWebsite)) {
+                        launchUrl(MyURLs.betafluxWebsite);
+                      }
+                    },
+                  ),
+                )
               ],
             )),
       ),

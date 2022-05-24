@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../utils/my_theme.dart';
-import 'betaflux_container.dart';
-import 'hyper_container.dart';
-import 'specso_container.dart';
-import 'weexpan_container.dart';
+import '../utils/my_theme.dart';
+import 'companies/betaflux_container.dart';
+import 'companies/hyper_container.dart';
+import 'companies/specso_container.dart';
+import 'companies/weexpan_container.dart';
+import 'footer.dart';
 
 class CompaniesSection extends StatefulWidget {
   const CompaniesSection({Key? key}) : super(key: key);
@@ -15,43 +15,16 @@ class CompaniesSection extends StatefulWidget {
   State<CompaniesSection> createState() => _CompaniesSectionState();
 }
 
-class _CompaniesSectionState extends State<CompaniesSection>
-    with TickerProviderStateMixin {
-  late AnimationController _titleController;
-  late Animation<double> _titleTranslation;
-
-  @override
-  void initState() {
-    super.initState();
-    _titleController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
-    _titleTranslation = Tween(begin: -100.0, end: 0.0).animate(
-        CurvedAnimation(parent: _titleController, curve: Curves.bounceInOut));
-    _titleController.addListener(() {
-      if (mounted) setState(() {});
-    });
-  }
-
-  void forwardAnimation() {
-    if (!mounted) return;
-    _titleController.forward();
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    super.dispose();
-  }
-
+class _CompaniesSectionState extends State<CompaniesSection> {
   @override
   Widget build(BuildContext context) {
-    return VisibilityDetector(
-      key: const Key("Companies Section"),
-      onVisibilityChanged: (s) {
-        if (s.visibleFraction > .4) {
-          forwardAnimation();
-        }
-      },
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [
+          MyTheme.greenBush.withOpacity(.1),
+          MyTheme.whatStandButton.withOpacity(.2)
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -88,7 +61,9 @@ class _CompaniesSectionState extends State<CompaniesSection>
                 BetafluxContainer()
               ],
             ),
-          )
+          ),
+          const SizedBox(height: 40,),
+          const Footer()
         ],
       ),
     );

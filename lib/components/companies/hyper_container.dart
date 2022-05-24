@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:jagrajsingh_portfolio/utils/my_urls.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/my_theme.dart';
 
@@ -50,8 +52,11 @@ class _HyperContainerState extends State<HyperContainer>
         },
         child: Container(
             width: 300,
-            height: 350,
+            height: 300,
             decoration: BoxDecoration(
+           boxShadow: [
+             BoxShadow(color: MyTheme.greenBushWithOpacity,blurRadius: 3,spreadRadius: 2,offset: Offset(2,2))
+           ],
                 color: MyTheme.white, borderRadius: BorderRadius.circular(10)),
             padding: const EdgeInsets.all(14),
             child: Stack(
@@ -75,7 +80,7 @@ class _HyperContainerState extends State<HyperContainer>
                             Text(
                               "Hyper",
                               style: TextStyle(
-                                  color: Color(0xFFfc363b),
+                                  color: MyTheme.hyperRed,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16),
                             ),
@@ -86,7 +91,7 @@ class _HyperContainerState extends State<HyperContainer>
                                 style: TextStyle(
                                     color: MyTheme.text,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                    ),
                               ),
                             ),
                             Padding(
@@ -96,7 +101,7 @@ class _HyperContainerState extends State<HyperContainer>
                                 style: TextStyle(
                                     color: MyTheme.text,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                    ),
                               ),
                             ),
                             Padding(
@@ -106,7 +111,7 @@ class _HyperContainerState extends State<HyperContainer>
                                 style: TextStyle(
                                     color: MyTheme.text,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                    ),
                               ),
                             ),
                           ]),
@@ -122,6 +127,13 @@ class _HyperContainerState extends State<HyperContainer>
                     width: 90 - (55 * _controller.value),
                   ),
                 ),
+                Align(alignment: Alignment.topRight,
+                  child: IconButton(icon: const Icon(Icons.open_in_new),onPressed: ()async{
+                    if( await canLaunchUrl(MyURLs.hyperWebsite)){
+                      launchUrl(MyURLs.hyperWebsite);
+                    }
+                  },),
+                )
               ],
             )),
       ),
