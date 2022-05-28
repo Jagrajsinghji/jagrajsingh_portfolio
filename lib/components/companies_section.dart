@@ -19,7 +19,7 @@ class _CompaniesSectionState extends State<CompaniesSection> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    bool isMobile = size.width<=620;
+    bool isMobile = size.width <= 620;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
@@ -51,11 +51,11 @@ class _CompaniesSectionState extends State<CompaniesSection> {
             ),
           ),
           SizedBox(
-            height: isMobile?1300:300,
+            height: isMobile ? 1300 : 300,
             child: ListView(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              scrollDirection: isMobile?Axis.vertical:Axis.horizontal,
+              scrollDirection: isMobile ? Axis.vertical : Axis.horizontal,
               children: const [
                 HyperContainer(),
                 SpecsoContainer(),
@@ -64,7 +64,9 @@ class _CompaniesSectionState extends State<CompaniesSection> {
               ],
             ),
           ),
-          const SizedBox(height: 40,),
+          const SizedBox(
+            height: 40,
+          ),
           const Footer()
         ],
       ),

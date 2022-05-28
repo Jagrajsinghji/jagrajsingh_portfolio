@@ -11,7 +11,8 @@ class HomeSection extends StatefulWidget {
   State<HomeSection> createState() => _HomeSectionState();
 }
 
-class _HomeSectionState extends State<HomeSection> with TickerProviderStateMixin {
+class _HomeSectionState extends State<HomeSection>
+    with TickerProviderStateMixin {
   late AnimationController _greetingController;
   late AnimationController _titleController;
   late AnimationController _subTitleController;
@@ -98,11 +99,13 @@ class _HomeSectionState extends State<HomeSection> with TickerProviderStateMixin
         children: [
           Padding(
             padding: const EdgeInsets.all(40.0),
-            child: ClipRRect(borderRadius: BorderRadius.circular(100),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(100),
               child: Image.asset(
                 "assets/my_pic.png",
                 width: 200,
-                height: 200,fit: BoxFit.cover,
+                height: 200,
+                fit: BoxFit.cover,
               ),
             ),
           ),

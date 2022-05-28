@@ -20,5 +20,5 @@ class MyTheme {
   static const Color smoke = Color(0xffF5F5F5);
   static const Color hyperRed = Color(0xFFfc363b);
   static const Color weExpanBlue = Color(0xff1e366e);
-  static const Color btflxBlue =Color(0xff153dd9);
+  static const Color btflxBlue = Color(0xff153dd9);
 }

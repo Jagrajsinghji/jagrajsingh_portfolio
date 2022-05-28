@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../main.dart';
 import '../utils/my_theme.dart';
 import '../utils/painters/dots_painter.dart';
 
@@ -66,6 +69,9 @@ class _AboutSectionState extends State<AboutSection>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     bool isMobile = size.width <= 620;
+    bool showSpotlightImage = browserName == BrowserName.safari ||
+        defaultTargetPlatform == TargetPlatform.android ||
+        defaultTargetPlatform == TargetPlatform.iOS;
     return VisibilityDetector(
       key: const Key("About Section"),
       onVisibilityChanged: (s) {
@@ -214,7 +220,13 @@ class _AboutSectionState extends State<AboutSection>
                   ),
                 ),
               ),
-              if (!isMobile)
+              if (showSpotlightImage && !isMobile)
+                Image.asset(
+                  "assets/spotlight.png",
+                  width: size.width * .4,
+                  height: size.width * .4,
+                )
+              else if (!isMobile)
                 LottieBuilder.asset(
                   "assets/what_stand_me_out.json",
                   width: size.width * .4,

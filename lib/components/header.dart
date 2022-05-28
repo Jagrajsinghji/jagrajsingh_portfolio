@@ -27,10 +27,16 @@ class Header extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              height: 30,
-              width: 30,
-              child: Center(child: Image.asset("assets/JS_logo.png")),
+            const SizedBox(
+              height: 60,
+              width: 60,
+              child: Center(
+                child: Text("JS",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        color: MyTheme.nameText,
+                        fontSize: 30)),
+              ),
             ),
             Expanded(
               child: ListView(

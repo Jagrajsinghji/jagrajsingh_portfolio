@@ -44,7 +44,7 @@ class _SpecsoContainerState extends State<SpecsoContainer>
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child:GestureDetector(
+        child: GestureDetector(
           onTap: () {
             isTapped = !isTapped;
             if (isTapped) if (mounted) _controller.forward();
@@ -62,9 +62,14 @@ class _SpecsoContainerState extends State<SpecsoContainer>
                 height: 300,
                 decoration: BoxDecoration(
                     boxShadow: [
-                      BoxShadow(color: MyTheme.greenBushWithOpacity,blurRadius: 3,spreadRadius: 2,offset: const Offset(2,2))
+                      BoxShadow(
+                          color: MyTheme.greenBushWithOpacity,
+                          blurRadius: 3,
+                          spreadRadius: 2,
+                          offset: const Offset(2, 2))
                     ],
-                    color: MyTheme.white, borderRadius: BorderRadius.circular(10)),
+                    color: MyTheme.white,
+                    borderRadius: BorderRadius.circular(10)),
                 padding: const EdgeInsets.all(14),
                 child: Stack(
                   children: [
@@ -73,8 +78,8 @@ class _SpecsoContainerState extends State<SpecsoContainer>
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         transform: Transform.translate(
-                                offset:
-                                    Offset(0, -50 + (50 * _contentOpacity.value)))
+                                offset: Offset(
+                                    0, -50 + (50 * _contentOpacity.value)))
                             .transform,
                         child: AnimatedOpacity(
                           opacity: _contentOpacity.value,
@@ -96,9 +101,9 @@ class _SpecsoContainerState extends State<SpecsoContainer>
                                   child: Text(
                                     "In July 2020, I began working as a summer intern at Specso Technologies.",
                                     style: TextStyle(
-                                        color: MyTheme.text,
-                                        fontSize: 14,
-                                        ),
+                                      color: MyTheme.text,
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
                                 const Padding(
@@ -106,9 +111,9 @@ class _SpecsoContainerState extends State<SpecsoContainer>
                                   child: Text(
                                     "While working on several design-heavy projects, I honed my UI/UX talents.",
                                     style: TextStyle(
-                                        color: MyTheme.text,
-                                        fontSize: 14,
-                                        ),
+                                      color: MyTheme.text,
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
                                 const Padding(
@@ -116,9 +121,9 @@ class _SpecsoContainerState extends State<SpecsoContainer>
                                   child: Text(
                                     "Flutter has helped me construct anything from E-Commerce applications to Service-based applications.",
                                     style: TextStyle(
-                                        color: MyTheme.text,
-                                        fontSize: 14,
-                                        ),
+                                      color: MyTheme.text,
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
                               ]),
@@ -134,12 +139,16 @@ class _SpecsoContainerState extends State<SpecsoContainer>
                         width: 120 - (60 * _controller.value),
                       ),
                     ),
-                    Align(alignment: Alignment.topRight,
-                      child: IconButton(icon: const Icon(Icons.open_in_new),onPressed: ()async{
-                        if( await canLaunchUrl(MyURLs.specsoLinkedIn)){
-                          launchUrl(MyURLs.specsoLinkedIn);
-                        }
-                      },),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        icon: const Icon(Icons.open_in_new),
+                        onPressed: () async {
+                          if (await canLaunchUrl(MyURLs.specsoLinkedIn)) {
+                            launchUrl(MyURLs.specsoLinkedIn);
+                          }
+                        },
+                      ),
                     )
                   ],
                 )),

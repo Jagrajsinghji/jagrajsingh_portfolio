@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jagrajsingh_portfolio/main.dart';
 import 'package:jagrajsingh_portfolio/utils/painters/sin_wave_painter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:timeline_tile/timeline_tile.dart';
@@ -114,6 +117,9 @@ class _JourneySectionState extends State<JourneySection>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     bool isMobile = size.width <= 620;
+    bool showLottie = browserName != BrowserName.safari &&
+        defaultTargetPlatform != TargetPlatform.android &&
+        defaultTargetPlatform != TargetPlatform.iOS;
 
     return VisibilityDetector(
       key: const Key("Journey Section"),
@@ -138,7 +144,7 @@ class _JourneySectionState extends State<JourneySection>
               crossAxisAlignment: WrapCrossAlignment.center,
               runAlignment: WrapAlignment.center,
               children: [
-                if (!isMobile)
+                if (showLottie && (!isMobile))
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: LottieBuilder.asset(
