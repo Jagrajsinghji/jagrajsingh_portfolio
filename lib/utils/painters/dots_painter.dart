@@ -17,7 +17,7 @@ class DotsPainter extends CustomPainter {
         Paint()..color = MyTheme.darkYellow.withOpacity(.3));
 
     canvas.drawCircle(Offset(0, size.height * .5), 20,
-        Paint()..color = MyTheme.skyBlue.withOpacity(.3));
+        Paint()..color = MyTheme.skyBlue);
   }
 
   @override

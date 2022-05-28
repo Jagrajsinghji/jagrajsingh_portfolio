@@ -65,7 +65,7 @@ class _AboutSectionState extends State<AboutSection>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    bool isMobile = size.width <= 620;
     return VisibilityDetector(
       key: const Key("About Section"),
       onVisibilityChanged: (s) {
@@ -76,9 +76,8 @@ class _AboutSectionState extends State<AboutSection>
       child: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-
           MyTheme.whatStandButton.withOpacity(.2),
-              Colors.grey.shade100,
+          Colors.grey.shade100,
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: ClipRRect(
           borderRadius: BorderRadius.zero,
@@ -91,7 +90,7 @@ class _AboutSectionState extends State<AboutSection>
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: SizedBox(
-                  width: size.width * .4,
+                  width: size.width * (isMobile ? .8 : 0.4),
                   child: CustomPaint(
                     painter: DotsPainter(),
                     child: BackdropFilter(
@@ -133,11 +132,12 @@ class _AboutSectionState extends State<AboutSection>
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "I'm Jagraj Singh, a human having $myAge years of experience in life.",
+                                      "I'm Jagraj Singh, a philosopher having $myAge years of experience in life.",
                                       textAlign: TextAlign.start,
                                       style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
                                           height: 1.5,
-                                          color: MyTheme.pinkDark,
+                                          color: MyTheme.redDark,
                                           fontSize: 18),
                                     ),
                                     const Padding(
@@ -147,8 +147,9 @@ class _AboutSectionState extends State<AboutSection>
                                         "I create an impact with my algorithms and poetry.",
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                             height: 1.5,
-                                            color: MyTheme.pinkDark,
+                                            color: MyTheme.redDark,
                                             fontSize: 18),
                                       ),
                                     ),
@@ -159,8 +160,9 @@ class _AboutSectionState extends State<AboutSection>
                                         "I design and create software with the broader picture in mind because that's the crux.",
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                             height: 1.5,
-                                            color: MyTheme.pinkDark,
+                                            color: MyTheme.redDark,
                                             fontSize: 18),
                                       ),
                                     ),
@@ -171,8 +173,9 @@ class _AboutSectionState extends State<AboutSection>
                                         "Although I am passionate about programming, I also have a soft spot for IoT (Internet of Things) and 3D printing.",
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                             height: 1.5,
-                                            color: MyTheme.pinkDark,
+                                            color: MyTheme.redDark,
                                             fontSize: 18),
                                       ),
                                     ),
@@ -182,8 +185,9 @@ class _AboutSectionState extends State<AboutSection>
                                         "Let me now take you on a tour through my life.",
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                             height: 1.5,
-                                            color: MyTheme.pinkDark,
+                                            color: MyTheme.redDark,
                                             fontSize: 18),
                                       ),
                                     ),
@@ -192,11 +196,12 @@ class _AboutSectionState extends State<AboutSection>
                                         // print("sds");
                                       },
                                       child: const Text(
-                                        "(Let's connect for a comprehensive walk)",
+                                        "(Let's connect for a comprehensive walk?)",
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                             height: 1.5,
-                                            color: MyTheme.pinkDark,
+                                            color: MyTheme.redDark,
                                             fontSize: 18),
                                       ),
                                     ),
@@ -209,11 +214,12 @@ class _AboutSectionState extends State<AboutSection>
                   ),
                 ),
               ),
-              LottieBuilder.asset(
-                "assets/what_stand_me_out.json",
-                width: size.width * .4,
-                height: size.width * .4,
-              )
+              if (!isMobile)
+                LottieBuilder.asset(
+                  "assets/what_stand_me_out.json",
+                  width: size.width * .4,
+                  height: size.width * .4,
+                )
             ],
           ),
         ),

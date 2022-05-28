@@ -18,11 +18,13 @@ class CompaniesSection extends StatefulWidget {
 class _CompaniesSectionState extends State<CompaniesSection> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    bool isMobile = size.width<=620;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
           MyTheme.greenBush.withOpacity(.1),
-          MyTheme.whatStandButton.withOpacity(.2)
+          MyTheme.whatStandButton.withOpacity(.4)
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
       ),
       child: Column(
@@ -38,7 +40,7 @@ class _CompaniesSectionState extends State<CompaniesSection> {
                   style: GoogleFonts.lato(
                       fontWeight: FontWeight.bold,
                       color: MyTheme.text,
-                      fontSize: 10),
+                      fontSize: 12),
                 )
               ]),
               textAlign: TextAlign.center,
@@ -49,11 +51,11 @@ class _CompaniesSectionState extends State<CompaniesSection> {
             ),
           ),
           SizedBox(
-            height: 300,
+            height: isMobile?1300:300,
             child: ListView(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
+              scrollDirection: isMobile?Axis.vertical:Axis.horizontal,
               children: const [
                 HyperContainer(),
                 SpecsoContainer(),

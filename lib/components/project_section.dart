@@ -106,7 +106,7 @@ class _ProjectSectionState extends State<ProjectSection>
                             _titleTranslation.value, 0, 0),
                         duration: _titleController.duration!,
                         decoration: BoxDecoration(
-                            color: MyTheme.accent,
+                            color: MyTheme.nameText,
                             borderRadius: BorderRadius.circular(10)),
                         child: Image.asset(
                           "assets/urOs.png",

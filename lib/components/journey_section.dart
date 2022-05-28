@@ -113,6 +113,8 @@ class _JourneySectionState extends State<JourneySection>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isMobile = size.width <= 620;
+
     return VisibilityDetector(
       key: const Key("Journey Section"),
       onVisibilityChanged: (s) {
@@ -136,20 +138,20 @@ class _JourneySectionState extends State<JourneySection>
               crossAxisAlignment: WrapCrossAlignment.center,
               runAlignment: WrapAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: LottieBuilder.network(
-                    "https://assets9.lottiefiles.com/packages/lf20_2gfeptkg.json",
-                    errorBuilder: (_, __, ___) => Container(
+                if (!isMobile)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: LottieBuilder.asset(
+                      "assets/journey.json",
+                      errorBuilder: (_, __, ___) => Container(),
+                      width: size.width * .3,
+                      height: size.width * .3,
                     ),
-                    width: size.width * .3,
-                    height: size.width * .3,
                   ),
-                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, right: 20),
                   child: SizedBox(
-                    width: size.width * .5,
+                    width: size.width * (isMobile ? 1 : .5),
                     child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -220,7 +222,7 @@ class _JourneySectionState extends State<JourneySection>
                                         padding: const EdgeInsets.all(10.0),
                                         child: ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(5.0),
+                                              BorderRadius.circular(10.0),
                                           child: AnimatedContainer(
                                             duration:
                                                 _pointOneController.duration!,
@@ -235,7 +237,7 @@ class _JourneySectionState extends State<JourneySection>
                                                   : MyTheme
                                                       .greenBushWithOpacity,
                                               borderRadius:
-                                                  BorderRadius.circular(5.0),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             alignment: Alignment.centerLeft,
                                             padding: const EdgeInsets.all(10),
@@ -303,7 +305,7 @@ class _JourneySectionState extends State<JourneySection>
                                         padding: const EdgeInsets.all(10.0),
                                         child: ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(5.0),
+                                              BorderRadius.circular(10.0),
                                           child: AnimatedContainer(
                                             duration:
                                                 _pointTwoController.duration!,
@@ -318,7 +320,7 @@ class _JourneySectionState extends State<JourneySection>
                                                   : MyTheme
                                                       .greenBushWithOpacity,
                                               borderRadius:
-                                                  BorderRadius.circular(5.0),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             alignment: Alignment.centerLeft,
                                             padding: const EdgeInsets.all(10),
@@ -386,7 +388,7 @@ class _JourneySectionState extends State<JourneySection>
                                         padding: const EdgeInsets.all(10.0),
                                         child: ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(5.0),
+                                              BorderRadius.circular(10.0),
                                           child: AnimatedContainer(
                                             duration:
                                                 _pointThreeController.duration!,
@@ -402,7 +404,7 @@ class _JourneySectionState extends State<JourneySection>
                                                   : MyTheme
                                                       .greenBushWithOpacity,
                                               borderRadius:
-                                                  BorderRadius.circular(5.0),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             alignment: Alignment.centerLeft,
                                             padding: const EdgeInsets.all(10),
@@ -650,7 +652,7 @@ class _JourneySectionState extends State<JourneySection>
                                         padding: const EdgeInsets.all(10.0),
                                         child: ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(5.0),
+                                              BorderRadius.circular(10.0),
                                           child: AnimatedContainer(
                                             duration:
                                                 _pointFourController.duration!,
@@ -665,7 +667,7 @@ class _JourneySectionState extends State<JourneySection>
                                                   : MyTheme
                                                       .greenBushWithOpacity,
                                               borderRadius:
-                                                  BorderRadius.circular(5.0),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             alignment: Alignment.centerLeft,
                                             padding: const EdgeInsets.all(10),

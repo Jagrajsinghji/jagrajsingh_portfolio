@@ -100,7 +100,7 @@ class _HomeSectionState extends State<HomeSection> with TickerProviderStateMixin
             padding: const EdgeInsets.all(40.0),
             child: ClipRRect(borderRadius: BorderRadius.circular(100),
               child: Image.asset(
-                "assets/my_pic.jpeg",
+                "assets/my_pic.png",
                 width: 200,
                 height: 200,fit: BoxFit.cover,
               ),

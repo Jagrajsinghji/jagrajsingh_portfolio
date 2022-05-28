@@ -3,7 +3,6 @@ import 'package:jagrajsingh_portfolio/components/companies_section.dart';
 import 'package:jagrajsingh_portfolio/components/home_section.dart';
 
 import '../components/about_section.dart';
-import '../components/footer.dart';
 import '../components/header.dart';
 import '../components/journey_section.dart';
 

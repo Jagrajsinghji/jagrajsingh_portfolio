@@ -25,19 +25,13 @@ class Header extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(
-              height: 60,
-              width: 60,
-              child: Center(
-                child: Text("JS",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        color: MyTheme.nameText,
-                        fontSize: 30)),
-              ),
+            SizedBox(
+              height: 30,
+              width: 30,
+              child: Center(child: Image.asset("assets/JS_logo.png")),
             ),
-            const Spacer(),
             Expanded(
               child: ListView(
                 shrinkWrap: true,
