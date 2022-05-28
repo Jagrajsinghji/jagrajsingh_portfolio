@@ -138,7 +138,7 @@ class _AboutSectionState extends State<AboutSection>
                                           fontWeight: FontWeight.bold,
                                           height: 1.5,
                                           color: MyTheme.redDark,
-                                          fontSize: 18),
+                                          fontSize: 16),
                                     ),
                                     const Padding(
                                       padding:
@@ -150,7 +150,7 @@ class _AboutSectionState extends State<AboutSection>
                                             fontWeight: FontWeight.bold,
                                             height: 1.5,
                                             color: MyTheme.redDark,
-                                            fontSize: 18),
+                                            fontSize: 16),
                                       ),
                                     ),
                                     const Padding(
@@ -163,7 +163,7 @@ class _AboutSectionState extends State<AboutSection>
                                             fontWeight: FontWeight.bold,
                                             height: 1.5,
                                             color: MyTheme.redDark,
-                                            fontSize: 18),
+                                            fontSize: 16),
                                       ),
                                     ),
                                     const Padding(
@@ -176,7 +176,7 @@ class _AboutSectionState extends State<AboutSection>
                                             fontWeight: FontWeight.bold,
                                             height: 1.5,
                                             color: MyTheme.redDark,
-                                            fontSize: 18),
+                                            fontSize: 16),
                                       ),
                                     ),
                                     const Padding(
@@ -188,7 +188,7 @@ class _AboutSectionState extends State<AboutSection>
                                             fontWeight: FontWeight.bold,
                                             height: 1.5,
                                             color: MyTheme.redDark,
-                                            fontSize: 18),
+                                            fontSize: 16),
                                       ),
                                     ),
                                     InkWell(
