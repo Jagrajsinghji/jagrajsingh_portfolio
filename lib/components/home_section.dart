@@ -79,7 +79,6 @@ class _HomeSectionState extends State<HomeSection>
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
@@ -100,11 +99,11 @@ class _HomeSectionState extends State<HomeSection>
           Padding(
             padding: const EdgeInsets.all(40.0),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
+              borderRadius: BorderRadius.circular(125),
               child: Image.asset(
                 "assets/my_pic.png",
-                width: 200,
-                height: 200,
+                width: 250,
+                height: 250,
                 fit: BoxFit.cover,
               ),
             ),
@@ -160,7 +159,7 @@ class _HomeSectionState extends State<HomeSection>
                         _subTitleTranslation.value, 0, 0),
                     duration: _subTitleController.duration!,
                     child: const Text(
-                      "Not a Regular Engineer",
+                      "Not a regular engineer",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,

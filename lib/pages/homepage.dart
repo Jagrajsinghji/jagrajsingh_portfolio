@@ -22,7 +22,7 @@ class _IndexState extends State<Homepage> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Header(),
+          Header(_scrollController),
           Expanded(
             child: CustomScrollView(
                 shrinkWrap: true,
@@ -36,6 +36,7 @@ class _IndexState extends State<Homepage> {
                       const AboutSection(),
                       const JourneySection(),
                       const CompaniesSection(),
+                      // const ProjectsSection(),
                     ],
                   )),
                 ]),

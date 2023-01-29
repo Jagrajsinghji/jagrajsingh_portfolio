@@ -30,7 +30,7 @@ class Footer extends StatelessWidget {
                     }
                   },
                   child: Tooltip(
-                    message: "+919582218674",
+                    message: "+1(647)895-7854",
                     child: Container(
                       color: Colors.transparent,
                       child: SvgPicture.asset(
@@ -51,7 +51,7 @@ class Footer extends StatelessWidget {
                     }
                   },
                   child: Tooltip(
-                    message: "jagrajsinghji99@gmail.com",
+                    message: "jsingh0107@conestogac.on.ca",
                     child: Container(
                       color: Colors.transparent,
                       child: SvgPicture.asset(
@@ -112,7 +112,7 @@ class Footer extends StatelessWidget {
       const Padding(
         padding: EdgeInsets.only(bottom: 10.0),
         child: Text(
-          "Copyright © 2022 Jagraj Singh.",
+          "Copyright © 2023 Jagraj Singh.",
           maxLines: 2,
           style: TextStyle(fontSize: 12, color: MyTheme.nameText),
         ),

@@ -163,7 +163,7 @@ class _AboutSectionState extends State<AboutSection>
                                       padding:
                                           EdgeInsets.symmetric(vertical: 5.0),
                                       child: Text(
-                                        "I design and create software with the broader picture in mind because that's the crux.",
+                                        "I design and create software with the broader picture in mind, I believe that's the crux.",
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
@@ -188,27 +188,13 @@ class _AboutSectionState extends State<AboutSection>
                                     const Padding(
                                       padding: EdgeInsets.only(top: 10.0),
                                       child: Text(
-                                        "Let me now take you on a tour through my life.",
+                                        "Let's take a tour through my educational and professional engagements.",
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             height: 1.5,
                                             color: MyTheme.redDark,
                                             fontSize: 16),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        // print("sds");
-                                      },
-                                      child: const Text(
-                                        "(Let's connect for a comprehensive walk?)",
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            height: 1.5,
-                                            color: MyTheme.redDark,
-                                            fontSize: 18),
                                       ),
                                     ),
                                   ],

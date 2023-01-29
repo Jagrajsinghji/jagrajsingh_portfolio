@@ -6,7 +6,11 @@ import '../utils/my_theme.dart';
 import '../utils/my_urls.dart';
 
 class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
+  const Header(
+    this._scrollController, {
+    Key? key,
+  }) : super(key: key);
+  final ScrollController _scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +31,22 @@ class Header extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(
+             SizedBox(
               height: 60,
-              width: 60,
-              child: Center(
-                child: Text("JS",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        color: MyTheme.nameText,
-                        fontSize: 30)),
+              width: 200,
+              child: GestureDetector(
+                onTap: (){
+                  _scrollController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.easeIn);
+                },
+                child: Container(color: Colors.transparent,
+                  child: const Center(
+                    child: Text("Jagraj Singh",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            color: MyTheme.nameText,
+                            fontSize: 30)),
+                  ),
+                ),
               ),
             ),
             Expanded(

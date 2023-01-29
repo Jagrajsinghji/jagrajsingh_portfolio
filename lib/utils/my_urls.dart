@@ -15,6 +15,7 @@ class MyURLs {
       Uri.parse("https://twitter.com/jagrajsinghji?lang=en");
   static final Uri instagram =
       Uri.parse("https://www.instagram.com/jagrajsinghjii/");
-  static final Uri phone = Uri.parse("tel:+919582218674");
-  static final Uri email = Uri.parse("mailto:jagrajsinghji99@gmail.com");
+  static final Uri phone = Uri.parse("tel:+16478957854");
+  static final Uri email = Uri.parse("mailto:jsingh0107@conestogac.on.ca");
+  static final Uri resume = Uri.parse("https://drive.google.com/file/d/1zE7GVKDoUpG6feE8jcYguJ5x7XYXsiwN/view?usp=sharing");
 }
