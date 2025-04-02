@@ -2,150 +2,150 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../utils/my_theme.dart';
+import '../utils/globals.dart';
 import '../utils/my_urls.dart';
+import '../widgets/theme_change_button.dart';
 
 class Header extends StatelessWidget {
-  const Header(
-    this._scrollController, {
-    Key? key,
-  }) : super(key: key);
-  final ScrollController _scrollController;
+  const Header({
+    required this.onHeadingClick,
+    super.key,
+    required this.mobileHeadingWidget,
+  });
+
+  final ValueChanged<String> onHeadingClick;
+  final Widget mobileHeadingWidget;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Size size = MediaQuery.of(context).size;
+    bool isMobile = size.width <= 620;
+    final Map<String, Map<String, Uri>> socialLinks = {
+      "LinkedIn": {"assets/svg/linkedin-svgrepo-com.svg": MyURLs.linkedIn},
+      "Medium": {"assets/svg/medium-icon-svgrepo-com.svg": MyURLs.medium},
+      "Stack Overflow": {
+        "assets/svg/stack-overflow-svgrepo-com.svg": MyURLs.stackOverflow
+      },
+      "GitHub": {"assets/svg/github-svgrepo-com.svg": MyURLs.github},
+    };
+    return SizedBox(
       height: 70,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-        MyTheme.greenBushWithOpacity.withOpacity(.2),
-        MyTheme.whatStandButton.withOpacity(.5),
-        MyTheme.smoke
-      ], stops: const [
-        .2,
-        .4,
-        .9
-      ])),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             SizedBox(
-              height: 60,
-              width: 200,
-              child: GestureDetector(
-                onTap: (){
-                  _scrollController.animateTo(0, duration: const Duration(seconds: 1), curve: Curves.easeIn);
-                },
-                child: Container(color: Colors.transparent,
-                  child: const Center(
-                    child: Text("Jagraj Singh",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            color: MyTheme.nameText,
-                            fontSize: 30)),
+            isMobile
+                ? Expanded(child: mobileHeadingWidget)
+                : Expanded(
+                    flex: 3,
+                    child: ListView.builder(
+                      itemBuilder: (c, i) {
+                        var heading = sections.keys.elementAt(i);
+                        return Padding(
+                          padding: EdgeInsets.all(isMobile ? 4 : 8.0),
+                          child: GestureDetector(
+                            onTap: () => onHeadingClick(heading),
+                            child: Container(
+                              color: Colors.transparent,
+                              child: Center(
+                                  child: AnimatedDefaultTextStyle(
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium!,
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      child: Text(heading))),
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: sections.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                    ),
                   ),
+            if (!isMobile)
+              Expanded(
+                flex: 1,
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  reverse: true,
+                  children: [
+                    ...socialLinks.entries.map((entry) {
+                      var tooltip = entry.key;
+                      var assetPath = entry.value.keys.first;
+                      var uri = entry.value.values.first;
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () async {
+                            if (await canLaunchUrl(uri)) launchUrl(uri);
+                          },
+                          child: Tooltip(
+                            message: tooltip,
+                            child: Container(
+                              color: Colors.transparent,
+                              child: SvgPicture.asset(
+                                assetPath,
+                                height: 30,
+                                width: 30,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                    ThemeChangeButton(),
+                  ],
                 ),
-              ),
-            ),
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                reverse: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (await canLaunchUrl(MyURLs.linkedIn)) {
-                          launchUrl(MyURLs.linkedIn);
-                        }
-                      },
-                      child: Tooltip(
-                        message: "LinkedIn",
-                        child: Container(
-                          color: Colors.transparent,
-                          child: SvgPicture.asset(
-                            "assets/svg/linkedin-svgrepo-com.svg",
-                            width: 25,
-                            height: 25,
-                          ),
-                        ),
-                      ),
-                    ),
+              )
+            else ...[
+              ThemeChangeButton(),
+              IconButton(
+                  icon: Icon(
+                    Icons.more_vert,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (await canLaunchUrl(MyURLs.medium)) {
-                          launchUrl(MyURLs.medium);
-                        }
-                      },
-                      child: Tooltip(
-                        message: "Medium",
-                        child: Container(
-                          color: Colors.transparent,
-                          child: SvgPicture.asset(
-                            "assets/svg/medium-icon-svgrepo-com.svg",
-                            height: 30,
-                            width: 30,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (await canLaunchUrl(MyURLs.stackOverflow)) {
-                          launchUrl(MyURLs.stackOverflow);
-                        }
-                      },
-                      child: Tooltip(
-                        message: "Stack Overflow",
-                        child: Container(
-                          color: Colors.transparent,
-                          child: SvgPicture.asset(
-                            "assets/svg/stack-overflow-svgrepo-com.svg",
-                            width: 30,
-                            height: 30,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (await canLaunchUrl(MyURLs.github)) {
-                          launchUrl(MyURLs.github);
-                        }
-                      },
-                      child: Tooltip(
-                        message: "GitHub",
-                        child: Container(
-                          color: Colors.transparent,
-                          child: SvgPicture.asset(
-                            "assets/svg/github-svgrepo-com.svg",
-                            width: 25,
-                            height: 25,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
+                  onPressed: () => showSocialLinksMenu(context, socialLinks))
+            ]
           ],
         ),
       ),
+    );
+  }
+
+  void showSocialLinksMenu(
+      BuildContext context, Map<String, Map<String, Uri>> socialLinks) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+      ),
+      builder: (context) {
+        return Wrap(
+          children: [
+            ...socialLinks.entries.map((entry) {
+              var tooltip = entry.key;
+              var assetPath = entry.value.keys.first;
+              var uri = entry.value.values.first;
+              return ListTile(
+                leading: SvgPicture.asset(assetPath, height: 24, width: 24),
+                title: Text(
+                  tooltip,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                onTap: () async {
+                  Navigator.pop(context);
+                  if (await canLaunchUrl(uri)) launchUrl(uri);
+                },
+              );
+            }),
+          ],
+        );
+      },
     );
   }
 }
