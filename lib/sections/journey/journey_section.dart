@@ -233,7 +233,7 @@ class _JourneySectionState extends State<JourneySection>
                       children: [
                         TextSpan(
                           text:
-                              "\n Immortal Ventures, Remote, Canada\n May 2023 - Feb 2024",
+                              "\n Immortal Ventures, Remote, Canada\n Jan 20235 - Present",
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall!

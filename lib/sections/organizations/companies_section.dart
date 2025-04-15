@@ -31,10 +31,10 @@ class _CompaniesSectionState extends State<CompaniesSection> {
               style: Theme.of(context).textTheme.headlineLarge!),
         ),
         SizedBox(
-          height: isMobile ? 1300 : 300,
+          height: isMobile ? null : 300,
           child: ListView(
               shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
+              physics:isMobile? const NeverScrollableScrollPhysics():const BouncingScrollPhysics(),
               scrollDirection: isMobile ? Axis.vertical : Axis.horizontal,
               children:
                   organizations.map<Widget>(CompanyContainer.new).toList()),
